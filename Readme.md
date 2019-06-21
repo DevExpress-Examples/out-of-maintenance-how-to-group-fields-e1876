@@ -5,6 +5,9 @@
 * [WebForm1.aspx.cs](./CS/ASPxPivotGridFieldGroups/WebForm1.aspx.cs) (VB: [WebForm1.aspx.vb](./VB/ASPxPivotGridFieldGroups/WebForm1.aspx.vb))
 <!-- default file list end -->
 # How to Group Fields
+<!-- run online -->
+**[[Run Online]](https://codecentral.devexpress.com/e1876/)**
+<!-- run online end -->
 
 
 <p>The following code demonstrates how to combine fields into a group.</p>
