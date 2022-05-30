@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" 
 Inherits="ASPxPivotGridFieldGroups.WebForm1" %>
 
-<%@ Register Assembly="DevExpress.Web.ASPxPivotGrid.v15.2, Version=15.2.20.0, 
+<%@ Register Assembly="DevExpress.Web.ASPxPivotGrid.v21.2, Version=21.2.7.0, 
 Culture=neutral, PublicKeyToken=b88d1754d700e49a"
     Namespace="DevExpress.Web.ASPxPivotGrid" TagPrefix="dx" %>
 
@@ -16,42 +16,69 @@ Culture=neutral, PublicKeyToken=b88d1754d700e49a"
     <form id="form1" runat="server">
     <div>
         <dx:ASPxPivotGrid ID="ASPxPivotGrid1" runat="server" ClientIDMode="AutoID" 
-            DataSourceID="AccessDataSource1" Theme="Metropolis">
+            DataSourceID="SqlDataSource1" Theme="Metropolis" OptionsData-DataProcessingEngine="Optimized" IsMaterialDesign="False">
             <Fields>
-                <dx:PivotGridField ID="fieldCountry" AreaIndex="0" FieldName="Country" 
+                <dx:PivotGridField ID="fieldCountry" AreaIndex="0" 
                     Visible="False">
+                    <DataBindingSerializable>
+                        <dx:DataSourceColumnBinding ColumnName="Country" />
+                    </DataBindingSerializable>
                 </dx:PivotGridField>
-                <dx:PivotGridField ID="fieldSalesPerson" AreaIndex="0" Caption="Sales Person" 
-                    FieldName="Sales_Person" Visible="False">
+                <dx:PivotGridField ID="fieldSalesPerson" AreaIndex="0" Caption="Sales Person" Visible="False">
+                    <DataBindingSerializable>
+                        <dx:DataSourceColumnBinding ColumnName="Sales_Person" />
+                    </DataBindingSerializable>
                 </dx:PivotGridField>
                 <dx:PivotGridField ID="fieldExtendedPrice" Area="DataArea" AreaIndex="0" 
-                    Caption="Extended Price" FieldName="Extended_Price">
+                    Caption="Extended Price">
+                    <DataBindingSerializable>
+                        <dx:DataSourceColumnBinding ColumnName="Extended_Price" />
+                    </DataBindingSerializable>
                 </dx:PivotGridField>
                 <dx:PivotGridField ID="fieldOrderYear" Area="ColumnArea" AreaIndex="0" 
-                    Caption="Year" FieldName="OrderDate" GroupInterval="DateYear">
+                    Caption="Year" FieldName="OrderDate">
+                    <DataBindingSerializable>
+                        <dx:DataSourceColumnBinding ColumnName="OrderDate" GroupInterval="DateYear" />
+                    </DataBindingSerializable>
                 </dx:PivotGridField>
                 <dx:PivotGridField ID="fieldCategoryName" Area="RowArea" AreaIndex="0" 
-                    Caption="Category" FieldName="CategoryName">
+                    Caption="Category">
+                    <DataBindingSerializable>
+                        <dx:DataSourceColumnBinding ColumnName="CategoryName" />
+                    </DataBindingSerializable>
                 </dx:PivotGridField>
                 <dx:PivotGridField ID="fieldProductName" Area="RowArea" AreaIndex="1" 
-                    Caption="Product" FieldName="ProductName">
+                    Caption="Product">
+                    <DataBindingSerializable>
+                        <dx:DataSourceColumnBinding ColumnName="ProductName" />
+                    </DataBindingSerializable>
                 </dx:PivotGridField>
-                <dx:PivotGridField ID="fieldOrderQuarter" Area="ColumnArea" AreaIndex="1" 
-                    Caption="Quarter" ExpandedInFieldsGroup="False" FieldName="OrderDate" 
+                <dx:PivotGridField ID="fieldOrderQuarter" Area="ColumnArea" AreaIndex="2" 
+                    Caption="Quarter" ExpandedInFieldsGroup="False" 
                     GroupInterval="DateQuarter" ValueFormat-FormatString="Quarter {0}" 
                     ValueFormat-FormatType="Custom">
+<ValueFormat FormatString="Quarter {0}" FormatType="Custom"></ValueFormat>
+                    <DataBindingSerializable>
+                        <dx:DataSourceColumnBinding ColumnName="OrderDate" GroupInterval="DateQuarter" />
+                    </DataBindingSerializable>
                 </dx:PivotGridField>
-                <dx:PivotGridField ID="fieldOrderMonth" Area="ColumnArea" AreaIndex="2" 
-                    Caption="Month" FieldName="OrderDate" GroupInterval="DateMonth">
+                <dx:PivotGridField ID="fieldOrderMonth" Area="ColumnArea" AreaIndex="1" 
+                    Caption="Month">
+                    <DataBindingSerializable>
+                        <dx:DataSourceColumnBinding ColumnName="OrderDate" GroupInterval="DateMonth" />
+                    </DataBindingSerializable>
                 </dx:PivotGridField>
             </Fields>
+
+<OptionsData DataProcessingEngine="Optimized"></OptionsData>
         </dx:ASPxPivotGrid>
-        <asp:AccessDataSource ID="AccessDataSource1" runat="server" 
-            DataFile="~/nwind.mdb" 
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
+            ConnectionString="<%$ ConnectionStrings:ConnectionString %>" 
+            ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" 
             SelectCommand="SELECT [Country], [Sales Person] AS Sales_Person, 
             [Extended Price] AS Extended_Price, [OrderDate], [CategoryName], 
-            [ProductName] FROM [SalesPerson]">
-        </asp:AccessDataSource>
+            [ProductName] FROM [SalesPerson]"></asp:SqlDataSource>
+
     </div>
     </form>
 </body>
